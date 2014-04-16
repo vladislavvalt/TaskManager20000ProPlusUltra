@@ -256,6 +256,8 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\Projects.cshtml" />
+    <Content Include="Views\Manager\CreateProject.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -2,7 +2,27 @@
 
 @{
     ViewBag.Title = "Manager";
+    var allProjectsLinkTxt = "All projects";
+    if(1==1){
+        allProjectsLinkTxt = "My projects";    
+    }
 }
 
 <h2>Manager</h2>
+
+<h3>Hello @ViewBag.Manager.ManagerId</h3>
+@*TODO write some personal info*@
+
+
+@*TODO add some css layout*@
+
+
+
+<a href="/Manager/Projects">@allProjectsLinkTxt</a>
+
+@*TODO handle those links*@
+<a href="/Manager/Projects">My teams</a>
+
+<a href="/Manager/Projects">Current projects</a>
+<a href="/Manager/Projects">Completed projects</a>
 

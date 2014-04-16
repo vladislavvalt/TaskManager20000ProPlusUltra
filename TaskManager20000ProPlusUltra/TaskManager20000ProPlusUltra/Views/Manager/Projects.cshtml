@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TaskManager20000ProPlusUltra.TaskManagerDatabase.Project>
+
+@{
+    ViewBag.Title = "Projects";
+}
+
+<h2>Projects</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "CreateProject")
+</p>
+
+
+<table class="table">
+    <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Due date</th>
+        <th>SubProjects</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    Subproj List link
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId}) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
