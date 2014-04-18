@@ -29,6 +29,11 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the task status
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
         /// Gets or sets the date of deadline
         /// </summary>
         public DateTime Deadline { get; set; }

@@ -33,6 +33,11 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the project's status
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
         /// Gets or sets the client's unique id
         /// </summary>
         public int ClientId { get; set; }

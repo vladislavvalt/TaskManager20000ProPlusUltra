@@ -180,12 +180,21 @@
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Domain\StatusAvailable\TurboStatus.cs" />
+    <Compile Include="Domain\TurboClient.cs" />
+    <Compile Include="Domain\TurboEmployee.cs" />
+    <Compile Include="Domain\TurboManager.cs" />
+    <Compile Include="Domain\TurboProject.cs" />
+    <Compile Include="Domain\TurboTask.cs" />
+    <Compile Include="Domain\TurboTeam.cs" />
+    <Compile Include="Domain\TurboUser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Service.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TaskManagerDatabase\Client.cs" />
     <Compile Include="TaskManagerDatabase\CompanyContext.cs" />
