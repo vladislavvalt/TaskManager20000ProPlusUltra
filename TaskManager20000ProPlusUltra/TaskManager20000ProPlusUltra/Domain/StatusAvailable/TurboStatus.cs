@@ -8,7 +8,7 @@ namespace TaskManager20000ProPlusUltra.Domain.StatusAvailable
     public enum TurboStatus
     {
         OPENED,
-        IN_PROGRESS,
+        RESOLVED,
         CLOSED
     }
 }
