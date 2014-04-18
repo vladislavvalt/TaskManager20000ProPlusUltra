@@ -20,7 +20,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// Gets or sets the project's unique id
         /// </summary>
         [Key]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
 
         /// <summary>
         /// Gets or sets the project's name
@@ -40,7 +40,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the client's unique id
         /// </summary>
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
         
         /// <summary>
         /// Gets or sets the client
@@ -50,7 +50,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the manager's unique id
         /// </summary>
-        public int ManagerId { get; set; }
+        public string ManagerId { get; set; }
 
         /// <summary>
         /// Gets or sets the manager of the project
@@ -60,7 +60,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the team's unique id
         /// </summary>
-        public int TeamId { get; set; }
+        public string TeamId { get; set; }
 
         /// <summary>
         /// Gets or sets the team the project is assigned to

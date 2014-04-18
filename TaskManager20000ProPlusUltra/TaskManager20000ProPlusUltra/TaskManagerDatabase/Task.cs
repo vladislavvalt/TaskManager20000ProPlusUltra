@@ -7,6 +7,10 @@
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
 
     /// <summary>
     /// Represents a task assigned to the team member
@@ -16,7 +20,8 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the task's unique id
         /// </summary>
-        public int TaskId { get; set; }
+        [Key]
+        public string TaskId { get; set; }
 
         /// <summary>
         ///  Gets or sets the task's name
@@ -51,7 +56,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets unique id of employee the task is assigned to
         /// </summary>
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         /// <summary>
         /// Gets or sets the employee the task is assigned to

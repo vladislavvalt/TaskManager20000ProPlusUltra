@@ -9,7 +9,7 @@ namespace TaskManager20000ProPlusUltra.Domain
 {
     public class TurboTask
     {
-        public int TaskId { get; set; }
+        public string TaskId { get; set; }
 
         public string Name { get; set; }
 

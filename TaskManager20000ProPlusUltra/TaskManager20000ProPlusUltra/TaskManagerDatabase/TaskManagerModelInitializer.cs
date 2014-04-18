@@ -22,6 +22,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 
         public static UserStore<ApplicationUser> Store = null;
 
+
         protected override void Seed(CompanyContext context)
         {
  	        base.Seed(context);
@@ -31,66 +32,27 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             String hashedNewPassword = UserManager.PasswordHasher.HashPassword(newPassword);
             Password = hashedNewPassword;
 
-            GetClients().ForEach(c => context.Clients.Add(c));
+            Store.Dispose();
+            UserManager.Dispose();
 
-            //GetEmployees().ForEach(c => context.Employees.Add(c));
-            //GetManagers().ForEach(c => context.Managers.Add(c));
-            //GetProjects().ForEach(c => context.Projects.Add(c));
+            GetClients().ForEach(c => context.Clients.Add(c));
+            GetEmployees().ForEach(c => context.Employees.Add(c));
+            GetManagers().ForEach(c => context.Managers.Add(c));
+            GetProjects().ForEach(c => context.Projects.Add(c));
             //GetTasks().ForEach(c => context.Tasks.Add(c));
             //GetTeams().ForEach(c => context.Teams.Add(c));
             //context.SaveChanges();
         }
 
-        //private static List<ApplicationUser> GetApplicationUsers()
-        //{
-        //    var applicationUsers = new List<ApplicationUser>
-        //    {
-        //        new ApplicationUser{
-        //            Id = "1",
-        //            UserName = "Anastasiya",
-        //            FirstName = "Anastasiya",
-        //            LastName = "Bushkova",
-        //            Email = "bushkova@taskturbo.com",
-        //            EmailConfirmed = true,
-        //            Description = "starosta client"
-        //        },
-        //        new ApplicationUser{
-        //            Id = "2",
-        //            UserName = "Vladislav",
-        //            FirstName = "Vladislav",
-        //            LastName = "Valt",
-        //            Email = "vladislav.valt@taskturbo.com",
-        //            EmailConfirmed = true,
-        //            Description = "superprogramer manager"
-        //        },
-        //        new ApplicationUser{
-        //            Id = "3",
-        //            UserName = "Danilo",
-        //            FirstName = "Danilo",
-        //            LastName = "Fitel",
-        //            Email = "den@taskturbo.com",
-        //            EmailConfirmed = true,
-        //            Description = "Employee",
-        //        },
-        //        new ApplicationUser{
-        //            Id = "4",
-        //            UserName = "Olena",
-        //            FirstName = "Olena",
-        //            LastName = "Sokolova",
-        //            Email = "superlenka@taskturbo.com",
-        //            EmailConfirmed = true,
-        //            Description = "Employee"
-        //        }
-        //    };
-        //    return applicationUsers;
-        //}
 
-        private static List<Client> GetClients()
-        {         
+        //TODO write tasks to employees
+        //TODO write projects and tasks end teams to manager ... etc
 
-            var clients = new List<Client>{
-                new Client{
-                    ClientId = "1",
+        private static List<Employee> GetEmployees()
+        {
+            var empolyees = new List<Employee>{
+                new Employee{
+                    EmployeeId = "1",
                     User = new ApplicationUser{
                         Id = "1",
                         UserName = "Anastasiya",
@@ -103,28 +65,72 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                         EmailConfirmed = true,
                         Description = "starosta client"   
                     }
+                },
+                new Employee{
+                    EmployeeId = "4",
+                    User = new ApplicationUser{
+                        Id = "4",
+                        UserName = "Olena",
+                        FirstName = "Olena",
+                        LastName = "Sokolova",
+                        PasswordHash = Password,
+                        SecurityStamp = "41fererg",
+                        PhoneNumber = "+380631234567",
+                        Email = "superlenka@taskturbo.com",
+                        EmailConfirmed = true,
+                        Description = "Employee"
+                    }
                 }
             };
-            
-            return clients;
+            return empolyees;
         }
 
-        private static List<Employee> GetEmployees()
-        {
-            var employees = new List<Employee>
-            {
-
-            };
-            return employees;
-        }
 
         private static List<Manager> GetManagers()
         {
             var managers = new List<Manager>
             {
-
+                new Manager{
+                    ManagerId = "2",
+                    User = new ApplicationUser{
+                        Id = "2",
+                        UserName = "Vladislav",
+                        FirstName = "Vladislav",
+                        LastName = "Valt",
+                        PasswordHash = Password,
+                        SecurityStamp = "41fererg",
+                        PhoneNumber = "+380631234567",
+                        Email = "vladislav.valt@taskturbo.com",
+                        EmailConfirmed = true,
+                        Description = "superprogramer manager"
+                    }
+                }  
             };
             return managers;
+        }
+
+
+        private static List<Client> GetClients()
+        {
+            var clients = new List<Client>{
+                new Client{
+                    ClientId = "3",
+                    User = new ApplicationUser{
+                        Id = "3",
+                        UserName = "Danilo",
+                        FirstName = "Danilo",
+                        LastName = "Fitel",
+                        PasswordHash = Password,
+                        SecurityStamp = "41fererg",
+                        PhoneNumber = "+380631234567",
+                        Email = "den@taskturbo.com",
+                        EmailConfirmed = true,
+                        Description = "Client",
+                    }
+                }
+            };
+            
+            return clients;
         }
 
         private static List<Project> GetProjects()

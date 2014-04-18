@@ -9,7 +9,7 @@ namespace TaskManager20000ProPlusUltra.Domain
 {
     public class TurboProject
     {
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
 
         public string Name { get; set; }
 

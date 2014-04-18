@@ -7,7 +7,7 @@ namespace TaskManager20000ProPlusUltra.Domain
 {
     public class TurboTeam
     {
-        public int TeamId { get; set; }
+        public string TeamId { get; set; }
 
         public TurboManager Manager { get; set; }
 

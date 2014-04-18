@@ -6,7 +6,10 @@
 
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Represents a team of employees working on the same set of projects
@@ -16,12 +19,13 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         ///  Gets or sets the team's unique id
         /// </summary>
-        public int TeamId { get; set; }
+        [Key]
+        public string TeamId { get; set; }
 
         /// <summary>
         /// Gets or sets the id of the team's manager
         /// </summary>
-        public int ManagerId { get; set; }
+        public string ManagerId { get; set; }
 
         /// <summary>
         /// Gets or sets the team's manager
