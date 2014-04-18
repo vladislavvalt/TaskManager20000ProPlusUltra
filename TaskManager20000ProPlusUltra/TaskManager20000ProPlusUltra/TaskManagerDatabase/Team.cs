@@ -31,16 +31,12 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the list of team members
         /// </summary>
-        public virtual List<Employee> Members { get; set; }
+        public virtual List<Employee> Employees { get; set; }
 
         /// <summary>
-        /// Gets or sets the list of current projects
+        /// Gets or sets the list of projects
         /// </summary>
-        public virtual List<Project> CurrentProjects { get; set; }
+        public virtual List<Project> Projects { get; set; }
 
-        /// <summary>
-        /// Gets or sets the list of completed projects
-        /// </summary>
-        public virtual List<Project> CompletedProjects { get; set; }
     }
 }

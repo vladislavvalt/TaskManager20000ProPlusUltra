@@ -24,13 +24,9 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         public ApplicationUser User { get; set; }
 
         /// <summary>
-        /// Gets or sets the list of client's current contracts
+        /// Gets or sets the list of client's contracts
         /// </summary>
-        public List<Project> CurrentContracts { get; set; }
+        public List<Project> Projects { get; set; }
 
-        /// <summary>
-        /// Gets or sets the list of client's completed contracts
-        /// </summary>
-        public List<Project> CompletedContracts { get; set; }
     }
 }

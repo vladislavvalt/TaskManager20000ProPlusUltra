@@ -178,6 +178,8 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +194,7 @@
     <Compile Include="TaskManagerDatabase\Program.cs" />
     <Compile Include="TaskManagerDatabase\Project.cs" />
     <Compile Include="TaskManagerDatabase\Task.cs" />
+    <Compile Include="TaskManagerDatabase\TaskManagerModelInitializer.cs" />
     <Compile Include="TaskManagerDatabase\Team.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,8 +261,20 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Manager\Projects.cshtml" />
     <Content Include="Views\Manager\CreateProject.cshtml" />
+    <Content Include="Views\Task\Create.cshtml" />
+    <Content Include="Views\Task\Delete.cshtml" />
+    <Content Include="Views\Task\Details.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Team\Create.cshtml" />
+    <Content Include="Views\Team\Delete.cshtml" />
+    <Content Include="Views\Team\Details.cshtml" />
+    <Content Include="Views\Team\Edit.cshtml" />
+    <Content Include="Views\Team\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

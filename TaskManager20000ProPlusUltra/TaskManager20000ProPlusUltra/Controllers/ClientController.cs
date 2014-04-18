@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace TaskManager20000ProPlusUltra.Controllers
 {
-    [Authorize(Roles = "Client")]
+    //TODO uncomment it
+    //[Authorize(Roles = "Client")]
     public class ClientController : Controller
     {
         //

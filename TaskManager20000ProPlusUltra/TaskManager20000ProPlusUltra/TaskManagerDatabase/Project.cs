@@ -8,6 +8,8 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Represents a project detailed in agreement between a client and a manager
@@ -17,6 +19,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the project's unique id
         /// </summary>
+        [Key]
         public int ProjectId { get; set; }
 
         /// <summary>

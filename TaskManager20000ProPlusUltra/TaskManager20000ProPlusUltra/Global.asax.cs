@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using System.Data.Entity;
+using TaskManager20000ProPlusUltra.TaskManagerDatabase;
+
 namespace TaskManager20000ProPlusUltra
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,6 +19,8 @@ namespace TaskManager20000ProPlusUltra
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer<CompanyContext>(new TaskManagerModelInitializer());
         }
     }
 }

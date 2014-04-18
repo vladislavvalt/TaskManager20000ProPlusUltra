@@ -16,8 +16,12 @@
     <thead>
         <th>Name</th>
         <th>Description</th>
-        <th>Due date</th>
-        <th>SubProjects</th>
+        <th>Client</th>
+        <th>Team</th>
+        <th>Tasks</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Deadline date</th>  
     </thead>
     <tbody>
         @foreach (var item in Model)
@@ -30,15 +34,27 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
+                    <a href="/Client">@Html.DisplayFor(modelItem => item.ClientId)</a>
+                    @item.Client
+                </td>
+                <td>
+                    <a href="/Team">@Html.DisplayFor(modelItem => item.TeamId)</a>
+                </td>
+                <td>
+                    <a href="/Tasks">@Html.DisplayFor(modelItem => item.Tasks)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Deadline)
                 </td>
                 <td>
-                    Subproj List link
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId}) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                    @Html.ActionLink("Edit", "Edit", "Task", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Details", "Details", "Task",  new { id = item.ProjectId }) |
                 </td>
             </tr>
         }

@@ -26,11 +26,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the list of current tasks
         /// </summary>
-        public virtual List<Task> CurrentTasks { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list of completed tasks
-        /// </summary>
-        public virtual List<Task> CompletedTasks { get; set; }
+        public virtual List<Task> Tasks { get; set; }
     }
 }

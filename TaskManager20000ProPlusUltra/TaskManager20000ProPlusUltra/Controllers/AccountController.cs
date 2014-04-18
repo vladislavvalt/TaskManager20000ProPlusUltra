@@ -26,9 +26,12 @@ namespace TaskManager20000ProPlusUltra.Controllers
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
+            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new CompanyContext()));
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
+        public RoleManager<IdentityRole> RoleManager { get; private set; }
+
 
         //
         // GET: /Account/Login
@@ -38,6 +41,8 @@ namespace TaskManager20000ProPlusUltra.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
+        private bool isRolesInit = false;
 
         //
         // POST: /Account/Login
@@ -50,14 +55,50 @@ namespace TaskManager20000ProPlusUltra.Controllers
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
-                {
+                {                 
+
+                    if (!isRolesInit)
+                    {
+                        var employeeRoleResult = RoleManager.Create(new IdentityRole("Employee")); // Employee
+                        var managerRoleResult = RoleManager.Create(new IdentityRole("Manager")); // Manager
+                        var clientRoleResult = RoleManager.Create(new IdentityRole("Client")); // Client 
+                        if (employeeRoleResult.Succeeded && managerRoleResult.Succeeded && clientRoleResult.Succeeded)
+                        {
+                            isRolesInit = true;
+                        }
+                        
+                    }
+
+                    // some fun stuff
+                    if (user.Roles.Count == 0)
+                    {
+                        int userIdInt = Convert.ToInt32(user.Id);
+                        string roleToAdd = Convert.ToString((userIdInt - 1) % 3 + 1);
+                        switch (roleToAdd)
+                        {
+                            case "1": UserManager.AddToRole(user.Id, "Employee"); break;
+                            case "2": UserManager.AddToRole(user.Id, "Manager"); break;
+                            case "3": UserManager.AddToRole(user.Id, "Client"); break;
+                            default: UserManager.AddToRole(user.Id, "Employee"); break;
+                        }
+                    }
+
                     await SignInAsync(user, model.RememberMe);
-                    if (user.Roles.First().RoleId == "1")
-                        return RedirectToAction("Index", "Employee");
-                    if (user.Roles.First().RoleId == "2")
-                        return RedirectToAction("Index", "Manager");
-                    if (user.Roles.First().RoleId == "3")
-                        return RedirectToAction("Index", "Client");
+
+                    // looks bad, but it works :)
+                    foreach(var role in RoleManager.Roles)
+                    {
+                        if (user.Roles.First().RoleId == role.Id)
+                        {
+                            if (role.Name == "Employee")
+                                return RedirectToAction("Index", "Employee");                                
+                            if (role.Name == "Manager")
+                                return RedirectToAction("Index", "Manager");
+                            if (role.Name == "Client")
+                                return RedirectToAction("Index", "Client");
+                        }
+                    }                       
+                    
                     return RedirectToLocal(returnUrl);
                 }
                 else
