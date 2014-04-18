@@ -23,6 +23,10 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         public static UserStore<ApplicationUser> Store = null;
 
 
+        public static List<Employee> employees = null;
+
+        public static List<Task> tasks = null;
+
         protected override void Seed(CompanyContext context)
         {
  	        base.Seed(context);
@@ -38,10 +42,9 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             GetClients().ForEach(c => context.Clients.Add(c));
             GetEmployees().ForEach(c => context.Employees.Add(c));
             GetManagers().ForEach(c => context.Managers.Add(c));
-            GetProjects().ForEach(c => context.Projects.Add(c));
-            //GetTasks().ForEach(c => context.Tasks.Add(c));
-            //GetTeams().ForEach(c => context.Teams.Add(c));
-            //context.SaveChanges();
+            GetTeams().ForEach(c => context.Teams.Add(c));
+            GetTasks().ForEach(c => context.Tasks.Add(c));
+            GetProjects().ForEach(c => context.Projects.Add(c));          
         }
 
 
@@ -50,7 +53,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 
         private static List<Employee> GetEmployees()
         {
-            var empolyees = new List<Employee>{
+            employees = new List<Employee>{
                 new Employee{
                     EmployeeId = "1",
                     User = new ApplicationUser{
@@ -82,7 +85,8 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                     }
                 }
             };
-            return empolyees;
+
+            return employees;
         }
 
 
@@ -133,35 +137,80 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             return clients;
         }
 
+        private static List<Team> GetTeams()
+        {
+            var teams = new List<Team>
+            {
+                new Team{
+                    TeamId = "1",
+                    ManagerId = "2",
+                    Employees = employees
+                }
+            };
+            return teams;
+        }
+
+
+        private static List<Task> GetTasks()
+        {
+            tasks = new List<Task>
+            {
+                new Task{
+                    TaskId = "1",
+                    Name = "Be starosta!",
+                    Description = "Bla bla",
+                    Status = "OPENED",
+                    Deadline = new DateTime(2014, 05, 25),
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.MaxValue,
+                    EmployeeId = "1"
+                },
+                new Task{
+                    TaskId = "2",
+                    Name = "Write some ASP.NET Controller!",
+                    Description = "Bla bla",
+                    Status = "CLOSED",
+                    Deadline = new DateTime(2014, 05, 25),
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.MaxValue,
+                    EmployeeId = "1"
+                },
+                new Task{
+                    TaskId = "3",
+                    Name = "Do practise number 4",
+                    Description = "Bla bla",
+                    Status = "OPENED",
+                    Deadline = new DateTime(2014, 05, 25),
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.MaxValue,
+                    EmployeeId = "4"
+                },
+            };
+            return tasks;
+        }
+
+
+        // TODO set project
         private static List<Project> GetProjects()
         {
             var projects = new List<Project>
             {
                 new Project{
-                    ProjectId = 1,
-                    ClientId = 1,
-                    Description = "lol"
+                    ProjectId = "1",
+                    ClientId = "3",
+                    ManagerId = "2",
+                    TeamId = "1",
+                    Tasks = tasks,
+                    Name = "TaskTurboPlus",
+                    Status = "OPENED",
+                    Description = "Cool Stuff!",
+                    Deadline = new DateTime(2014, 05, 28),
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.MaxValue,
                 }
             };
             return projects;
-        }
-
-        private static List<Task> GetTasks()
-        {
-            var tasks = new List<Task>
-            {
-
-            };
-            return tasks;
-        }
-
-        private static List<Team> GetTeams()
-        {
-            var teams = new List<Team>{
-
-            };
-            return teams;
-        }
+        }       
 
     }
 }
