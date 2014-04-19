@@ -1,10 +1,10 @@
-﻿@model TaskManager20000ProPlusUltra.TaskManagerDatabase.Project
+﻿@model TaskManager20000ProPlusUltra.TaskManagerDatabase.Task
 
 @{
-    ViewBag.Title = "CreateProject";
+    ViewBag.Title = "CreateTask";
 }
 
-<h2>CreateProject</h2>
+<h2>CreateTask</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,15 +12,17 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Project</h4>
+        <h4>Task</h4>
         <hr />
         @Html.ValidationSummary(true)
 
+        <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ProjectId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TaskId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectId)
-                @Html.ValidationMessageFor(model => model.ProjectId)
+                @Html.EditorFor(model => model.TaskId)
+                @Html.ValidationMessageFor(model => model.TaskId)
             </div>
         </div>
 
@@ -41,26 +43,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ClientId, "ClientId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ClientId")
-                @Html.ValidationMessageFor(model => model.ClientId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ManagerId, "ManagerId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ManagerId")
-                @Html.ValidationMessageFor(model => model.ManagerId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TeamId, "TeamId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TeamId")
-                @Html.ValidationMessageFor(model => model.TeamId)
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
             </div>
         </div>
 
@@ -88,16 +74,26 @@
             </div>
         </div>
 
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EmployeeId")
+                @Html.ValidationMessageFor(model => model.EmployeeId)
+            </div>
+        </div>
+        
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="CreateProject" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Projects")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

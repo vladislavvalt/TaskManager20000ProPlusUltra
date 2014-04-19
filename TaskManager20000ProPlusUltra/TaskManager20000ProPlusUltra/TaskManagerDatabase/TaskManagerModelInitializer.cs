@@ -4,6 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using TaskManager20000ProPlusUltra.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
@@ -18,6 +25,8 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         public static UserStore<ApplicationUser> Store = null;
 
         public static List<Employee> employees = null;
+
+        public static List<Employee> anotherEmployees = null;
 
         public static List<Task> tasks = null;
 
@@ -79,7 +88,44 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                 }
             };
 
-            return employees;
+            anotherEmployees = new List<Employee>{
+                new Employee{
+                    EmployeeId = "7",
+                    User = new ApplicationUser{
+                        Id = "7",
+                        UserName = "Alina",
+                        FirstName = "Alina",
+                        LastName = "Goca",
+                        PasswordHash = Password,
+                        SecurityStamp = "41fererg",
+                        PhoneNumber = "+380631234567",
+                        Email = "goca@taskturbo.com",
+                        EmailConfirmed = true,
+                        Description = "smart client"   
+                    }
+                },
+                new Employee{
+                    EmployeeId = "10",
+                    User = new ApplicationUser{
+                        Id = "10",
+                        UserName = "Ilya",
+                        FirstName = "Ilya",
+                        LastName = "Silenko",
+                        PasswordHash = Password,
+                        SecurityStamp = "41fererg",
+                        PhoneNumber = "+380631234567",
+                        Email = "silenko@taskturbo.com",
+                        EmailConfirmed = true,
+                        Description = "Employee"
+                    }
+                }
+            };
+
+            var fullEmployeeList = new List<Employee>();
+            employees.ForEach(e => fullEmployeeList.Add(e));
+            anotherEmployees.ForEach(e => fullEmployeeList.Add(e));
+            
+            return fullEmployeeList.ToList();
         }
 
         private static List<Manager> GetManagers()
@@ -136,6 +182,11 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                     TeamId = "1",
                     ManagerId = "2",
                     Employees = employees
+                },
+                new Team{
+                    TeamId = "2",
+                    ManagerId = "2",
+                    Employees = anotherEmployees
                 }
             };
             return teams;

@@ -1,20 +1,21 @@
 ﻿@model TaskManager20000ProPlusUltra.TaskManagerDatabase.Team
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "CreateTeam";
 }
 
-<h2>Create</h2>
+<h2>CreateTeam</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Team</h4>
         <hr />
         @Html.ValidationSummary(true)
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.TeamId, new { @class = "control-label col-md-2" })
@@ -27,10 +28,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ManagerId, "ManagerId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ManagerId", String.Empty)
+                @Html.DropDownListFor(model => model.ManagerId, @ViewBag.ManagerId as List<SelectListItem>)
                 @Html.ValidationMessageFor(model => model.ManagerId)
             </div>
         </div>
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employees, "Employees", new { @class = "control-label col-md-2" })
+                        
+            <div class="col-md-10">
+                @*@Html.ListBoxFor(model => model.Employees,  ViewBag.Employees as MultiSelectList)*@
+                <select name="employeeIdList" multiple="multiple">
+                    @foreach (var item in ViewBag.Employees)
+                    {
+                        <option value="@item.EmployeeId">@item.User.FirstName @item.User.LastName</option>
+                    }
+                </select>
+            </div>
+                
+        </div>
+        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -41,7 +60,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Teams")
 </div>
 
 @section Scripts {

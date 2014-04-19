@@ -10,22 +10,13 @@
 
 <h2>Manager</h2>
 
-<h3>Hello @ViewBag.Manager.ManagerId</h3>
-@*TODO write some personal info*@
-
-
-@*TODO add some css layout*@
-
+<h3>Hello @ViewBag.Manager.User.FirstName @ViewBag.Manager.User.LastName</h3>
 
 
 <a href="/Manager/Projects">@allProjectsLinkTxt</a>
 
-@*TODO handle those links*@
-<a href="/Manager/Projects">My teams</a>
+<a href="/Manager/Teams">My teams</a>
 
-<a href="/Manager/Projects">Current projects</a>
-<a href="/Manager/Projects">Completed projects</a>
+<a href="/Manager/CurrentProjects">Current projects</a>
+<a href="/Manager/CompletedProjects">Completed projects</a>
 
-<h1>TODO make view for manager teams</h1>
-
-<h1>TODO make view for manager project</h1>

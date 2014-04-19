@@ -8,6 +8,21 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <meta name="description" content="The description of my page" />
+
+    <style>
+        .footer {
+            margin-left: 10px;
+            position: absolute;
+            bottom: -10px;
+            height: 80px;
+        }
+
+        .footer table td {
+            border-right: 0px solid #fff;
+            border-left: 90px solid #fff;
+            border-right-width: 400px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,12 +48,24 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <h1>Footer</h1>
-            @*TODO write footer*@
-            <h3>TODO write some footer!</h3>
-            <p>&copy; @DateTime.Now.Year - TaskManager20000ProPlusUltra(c)</p>
-        </footer>
+        <div class="footer">
+            <p>
+                <table>
+                    <tr>
+                        <td>
+                            &copy; @DateTime.Now.Year - TaskManager20000ProPlusUltra(c)
+                        </td>
+                        <td></td>
+                        <td>
+
+                            <a href="http://localhost:41383/Home/About">About</a> &nbsp;&nbsp;
+                            <a href="http://localhost:41383/Home/Contact">Contact</a>
+
+                        </td>
+                    </tr>
+                </table>
+            </p>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

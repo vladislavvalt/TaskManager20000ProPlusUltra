@@ -1,17 +1,14 @@
 ﻿@model IEnumerable<TaskManager20000ProPlusUltra.TaskManagerDatabase.Project>
 
 @{
-    ViewBag.Title = "Projects";
+    ViewBag.Title = "CurrentProjects";
 }
 
-<h2>Projects</h2>
-
+<h2>CurrentProjects</h2>
 
 <p>
     @Html.ActionLink("Create New", "CreateProject")
 </p>
-
-
 <table class="table">
     <tr>
         <th>
@@ -42,6 +39,7 @@
         <th>
             @Html.DisplayNameFor(model => model.EndDate)
         </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -77,6 +75,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
+            <td>
+                @Html.ActionLink("Add Task", "CreateTask", new { projectId = "1" })
+            </td>
         </tr>
     }
+
 </table>

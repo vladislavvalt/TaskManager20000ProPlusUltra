@@ -289,6 +289,13 @@
     <Content Include="Views\Employee\CurrentTasks.cshtml" />
     <Content Include="Views\Employee\CompletedTasks.cshtml" />
     <Content Include="Views\Employee\Completed.cshtml" />
+    <Content Include="Views\Manager\CompletedProjects.cshtml" />
+    <Content Include="Views\Manager\CreateTask.cshtml" />
+    <Content Include="Views\Manager\CreateTeam.cshtml" />
+    <Content Include="Views\Manager\CurrentProjects.cshtml" />
+    <Content Include="Views\Manager\DeleteTeam.cshtml" />
+    <Content Include="Views\Manager\ProjectTasks.cshtml" />
+    <Content Include="Views\Manager\Teams.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\" />

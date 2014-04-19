@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TaskManager20000ProPlusUltra.TaskManagerDatabase.Team>
+
+@{
+    ViewBag.Title = "Teams";
+}
+
+<h2>Teams</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateTeam")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            Manager
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="/Team/Details/@item.TeamId">Team №@item.TeamId</a>
+        </td>
+        <td>
+            @ViewBag.Manager.User.FirstName @ViewBag.Manager.User.LastName
+        </td>    
+        <td>
+            @Html.ActionLink("Delete", "DeleteTeam", new { id=item.TeamId })
+        </td>
+    </tr>
+}
+
+</table>

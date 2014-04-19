@@ -4,11 +4,20 @@ using System.Net;
 using System.Web.Mvc;
 using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
+using TaskManager20000ProPlusUltra.Service;
+
 namespace TaskManager20000ProPlusUltra.Controllers
 {
     public class TeamController : Controller
     {
         private CompanyContext db = new CompanyContext();
+        private UserService UserService;
+
+
+        public TeamController()
+        {
+            UserService = new UserService(db);
+        }
 
         // GET: /Team/
         public ActionResult Index()
@@ -17,17 +26,20 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // GET: /Team/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Team team = db.Teams.Find(id);
+            
             if (team == null)
             {
                 return HttpNotFound();
             }
+            team.Employees.ForEach(e => e.User = UserService.FindUserById(e.EmployeeId));
+            team.Manager.User = UserService.FindUserById(team.Manager.ManagerId);
             return View(team);
         }
 
