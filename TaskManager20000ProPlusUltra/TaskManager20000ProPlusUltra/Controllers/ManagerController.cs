@@ -95,8 +95,10 @@ namespace TaskManager20000ProPlusUltra.Controllers
         public ActionResult ProjectTasks([Bind(Include="projectId")] string projectId)
         {
             var project = context.Projects.Find(projectId);
+            ViewBag.ProjectId = projectId;
             return View(project.Tasks);
         }
+
 
         // GET: /Task/Create
         public ActionResult CreateTask([Bind(Include = "projectId")] string projectId)
@@ -120,7 +122,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTask([Bind(Include = "TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task,
+        public ActionResult CreateTask([Bind(Include = "TaskId,Name,Description,Status,Deadline,StartDate,EndDate,EmployeeId")] Task task,
             [Bind(Include="projectId")] string projectId)
         {
             if (ModelState.IsValid)
@@ -133,7 +135,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
             return View(task);
         }
-
 
 
         //
@@ -287,6 +288,34 @@ namespace TaskManager20000ProPlusUltra.Controllers
                 return RedirectToAction("Projects");
             }
             return View(project);
+        }
+
+
+        public ActionResult CloseProject([Bind(Include = "projectId")]string projectId)
+        {
+            if(ModelState.IsValid)
+            {
+                var project = context.Projects.Find(projectId);
+                project.Status = "RESOLVED";
+                project.EndDate = DateTime.Now;
+                context.Entry(project).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Projects");
+        }
+
+        public ActionResult CloseProjectTask([Bind(Include = "taskId")] string taskId)
+        {
+            var projectId = "1";
+            if (ModelState.IsValid)
+            {
+                var task = context.Tasks.Find(taskId);
+                task.Status = "Closed";
+                task.EndDate = DateTime.Now;
+                context.Entry(task).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            return RedirectToAction("ProjectTasks?projectId=" + projectId);
         }
 
 	}

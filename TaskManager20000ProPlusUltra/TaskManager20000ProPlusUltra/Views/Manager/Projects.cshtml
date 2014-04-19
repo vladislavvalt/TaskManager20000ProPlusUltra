@@ -42,6 +42,10 @@
         <th>
             @Html.DisplayNameFor(model => model.EndDate)
         </th>
+        <th>
+
+        </th>
+        
     </tr>
 
     @foreach (var item in Model)
@@ -66,7 +70,7 @@
                 <a href="/Manager/ProjectTasks?projectId=@item.ProjectId">Tasks</a>
             </td>
             <td>
-                Team Link
+                <a href="/Team/Details/@item.TeamId">Team №@item.TeamId</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Deadline)
@@ -76,6 +80,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @if (@item.Status == "OPENED")
+                {
+                    <a href="/Manager/CloseProject?projectId=@item.ProjectId">Close Project</a>
+                }
             </td>
         </tr>
     }

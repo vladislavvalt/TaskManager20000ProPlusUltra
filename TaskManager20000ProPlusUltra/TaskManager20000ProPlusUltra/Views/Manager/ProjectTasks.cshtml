@@ -7,7 +7,7 @@
 <h2>ProjectTasks</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateTask", new { projectId = "1" })
+    @Html.ActionLink("Create New", "CreateTask", new { projectId = @ViewBag.ProjectId })
 </p>
 <table class="table">
     <tr>
@@ -59,9 +59,10 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TaskId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TaskId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TaskId })
+            @if (item.Status == "OPENED")
+            {
+                <a href="/Manager/CloseProjectTask?taskId=@item.TaskId">Close Project</a>
+            }
         </td>
     </tr>
 }

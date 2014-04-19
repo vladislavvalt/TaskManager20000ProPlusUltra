@@ -64,6 +64,10 @@
             </div>
         </div>
 
+        @*Html.HiddenFor(model => model.Status, new { @value = "OPENED"})*@
+        <input id="Status" name="Status" type="hidden" value="OPENED" />
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.Deadline, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
