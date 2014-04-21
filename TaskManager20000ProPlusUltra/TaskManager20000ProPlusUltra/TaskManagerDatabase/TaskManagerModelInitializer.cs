@@ -177,7 +177,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                 },
                 new Task{
                     TaskId = "3",
-                    Name = "Do practise number 4",
+                    Name = "Do practice number 4",
                     Description = "Bla bla",
                     Status = "OPENED",
                     Deadline = new DateTime(2014, 05, 25),
