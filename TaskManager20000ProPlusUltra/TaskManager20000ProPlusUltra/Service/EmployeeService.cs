@@ -8,6 +8,8 @@ namespace TaskManager20000ProPlusUltra.Service
 {
     public class EmployeeService : Service<Employee>
     {
+        public EmployeeService(CompanyContext context) : base(context) { }
+
         List<Task> getTasks(String employeeId)
         {
             return GetByID(employeeId).Tasks;

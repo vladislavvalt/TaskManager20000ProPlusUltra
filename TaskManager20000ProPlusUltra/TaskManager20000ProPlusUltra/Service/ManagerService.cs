@@ -12,7 +12,7 @@ namespace TaskManager20000ProPlusUltra.Service
         public Service<Employee> employee;
         public Service<Project> project;
         public Service<Team> team;
-
+        public ManagerService(CompanyContext context) : base(context) { }
         public void CreateProject(Project proj, String managerId)
         {
             proj.ManagerId = managerId;
