@@ -287,6 +287,8 @@
     <Content Include="Views\Team\Details.cshtml" />
     <Content Include="Views\Team\Edit.cshtml" />
     <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\Employee\Projects.cshtml" />
+    <Content Include="Views\Employee\Tasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\" />
