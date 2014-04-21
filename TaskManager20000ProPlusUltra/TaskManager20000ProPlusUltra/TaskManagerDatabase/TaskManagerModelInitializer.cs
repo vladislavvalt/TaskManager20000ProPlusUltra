@@ -9,7 +9,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
     public class TaskManagerModelInitializer : DropCreateDatabaseAlways<CompanyContext>//DropCreateDatabaseIfModelChanges<CompanyContext>
     {
-
         public static UserManager<ApplicationUser> UserManager { get; private set; }
 
         public static string Password = "1111";
@@ -42,7 +41,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             GetProjects().ForEach(c => context.Projects.Add(c));
         }
 
-
         //TODO write tasks to employees
         //TODO write projects and tasks end teams to manager ... etc
 
@@ -61,7 +59,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                         PhoneNumber = "+380631234567",
                         Email = "bushkova@taskturbo.com",
                         EmailConfirmed = true,
-                        Description = "starosta client"   
+                        Description = "starosta client"
                     }
                 },
                 new Employee{
@@ -84,7 +82,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             return employees;
         }
 
-
         private static List<Manager> GetManagers()
         {
             var managers = new List<Manager>
@@ -103,11 +100,10 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                         EmailConfirmed = true,
                         Description = "superprogramer manager"
                     }
-                }  
+                }
             };
             return managers;
         }
-
 
         private static List<Client> GetClients()
         {
@@ -144,7 +140,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             };
             return teams;
         }
-
 
         private static List<Task> GetTasks()
         {
@@ -184,7 +179,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             return tasks;
         }
 
-
         // TODO set project
         private static List<Project> GetProjects()
         {
@@ -206,6 +200,5 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             };
             return projects;
         }
-
     }
 }

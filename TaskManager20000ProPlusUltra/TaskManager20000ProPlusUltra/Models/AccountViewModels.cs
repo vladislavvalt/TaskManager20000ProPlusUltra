@@ -60,7 +60,6 @@ namespace TaskManager20000ProPlusUltra.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
@@ -75,6 +74,5 @@ namespace TaskManager20000ProPlusUltra.Models
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
         [Display(Name = "Last name")]
         public string LastName { get; set; }
-
     }
 }

@@ -7,10 +7,7 @@
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
 
     /// <summary>
     /// Represents a task assigned to the team member

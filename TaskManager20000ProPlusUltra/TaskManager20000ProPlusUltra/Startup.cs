@@ -2,6 +2,7 @@
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(TaskManager20000ProPlusUltra.Startup))]
+
 namespace TaskManager20000ProPlusUltra
 {
     public partial class Startup

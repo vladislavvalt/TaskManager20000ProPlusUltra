@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace TaskManager20000ProPlusUltra.Controllers
 {
@@ -15,14 +11,14 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "We are happy that you are interested in our cool commercial service :)";
+            ViewBag.Message = "We are happy that you are interested in our awesome service. Stay tuned! :)";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Please contact us if you have any question, you are welcome!";
+            ViewBag.Message = "We encourage you to contact our technical support operator if you have any question and bushkova.nastya@gmail.com if you feel lonely.";
 
             return View();
         }

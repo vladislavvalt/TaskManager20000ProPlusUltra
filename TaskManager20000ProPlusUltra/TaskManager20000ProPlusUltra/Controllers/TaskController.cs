@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
@@ -42,11 +38,11 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Task/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
+        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task)
+        public ActionResult Create([Bind(Include = "TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task)
         {
             if (ModelState.IsValid)
             {
@@ -74,11 +70,11 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Task/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
+        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task)
+        public ActionResult Edit([Bind(Include = "TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task)
         {
             if (ModelState.IsValid)
             {

@@ -6,7 +6,6 @@
 
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -20,7 +19,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the manager's unique id
         /// </summary>
-        /// 
+        ///
         [Key]
         public string ManagerId { get; set; }
 
@@ -36,6 +35,5 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// Gets or sets the list of manager's current projects
         /// </summary>
         public virtual List<Project> Projects { get; set; }
-
     }
 }

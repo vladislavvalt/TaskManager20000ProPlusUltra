@@ -9,7 +9,6 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Represents a project detailed in agreement between a client and a manager
@@ -41,7 +40,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// Gets or sets the client's unique id
         /// </summary>
         public string ClientId { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the client
         /// </summary>
@@ -70,7 +69,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
         /// <summary>
         /// Gets or sets the list of tasks the projects consists of
         /// </summary>
-        public virtual List<Task> Tasks { get; set; } 
+        public virtual List<Task> Tasks { get; set; }
 
         /// <summary>
         /// Gets or sets the project's deadline

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using System;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
 using TaskManager20000ProPlusUltra.Models;
 using TaskManager20000ProPlusUltra.TaskManagerDatabase;
-using System.Data.Entity.Validation;
-using System.Text;
 
 namespace TaskManager20000ProPlusUltra.Controllers
 {
@@ -30,8 +26,8 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
-        public RoleManager<IdentityRole> RoleManager { get; private set; }
 
+        public RoleManager<IdentityRole> RoleManager { get; private set; }
 
         //
         // GET: /Account/Login
@@ -55,18 +51,16 @@ namespace TaskManager20000ProPlusUltra.Controllers
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
-                {                 
-
+                {
                     if (!isRolesInit)
                     {
                         var employeeRoleResult = RoleManager.Create(new IdentityRole("Employee")); // Employee
                         var managerRoleResult = RoleManager.Create(new IdentityRole("Manager")); // Manager
-                        var clientRoleResult = RoleManager.Create(new IdentityRole("Client")); // Client 
+                        var clientRoleResult = RoleManager.Create(new IdentityRole("Client")); // Client
                         if (employeeRoleResult.Succeeded && managerRoleResult.Succeeded && clientRoleResult.Succeeded)
                         {
                             isRolesInit = true;
                         }
-                        
                     }
 
                     // some fun stuff
@@ -86,19 +80,19 @@ namespace TaskManager20000ProPlusUltra.Controllers
                     await SignInAsync(user, model.RememberMe);
 
                     // looks bad, but it works :)
-                    foreach(var role in RoleManager.Roles)
+                    foreach (var role in RoleManager.Roles)
                     {
                         if (user.Roles.First().RoleId == role.Id)
                         {
                             if (role.Name == "Employee")
-                                return RedirectToAction("Index", "Employee");                                
+                                return RedirectToAction("Index", "Employee");
                             if (role.Name == "Manager")
                                 return RedirectToAction("Index", "Manager");
                             if (role.Name == "Client")
                                 return RedirectToAction("Index", "Client");
                         }
-                    }                       
-                    
+                    }
+
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -376,6 +370,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -434,7 +429,8 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 
@@ -446,7 +442,9 @@ namespace TaskManager20000ProPlusUltra.Controllers
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
@@ -459,6 +457,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+
+        #endregion Helpers
     }
 }
