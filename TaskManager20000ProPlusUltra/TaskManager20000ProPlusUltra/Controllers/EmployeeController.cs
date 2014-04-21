@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
 using TaskManager20000ProPlusUltra.Models;
 using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
@@ -23,7 +20,35 @@ namespace TaskManager20000ProPlusUltra.Controllers
             return View();
         }
 
-        public ActionResult Tasks()
+        public ActionResult CurrentTasks()
+        {
+            return Tasks(false);
+        }
+
+        public ActionResult CompletedTasks()
+        {
+            return Tasks(true);
+        }
+
+        public ActionResult Completed(string id)
+        {
+            var user = LoggedInUser();
+            using (var context = new CompanyContext())
+            {
+                var tasks = from task in context.Tasks
+                            where task.EmployeeId == user.Id && task.TaskId == id
+                            select task;
+                foreach (var t in tasks)
+                {
+                    t.EndDate = DateTime.Now;
+                    t.Status = "COMPLETED";
+                }
+                context.SaveChanges();
+            }
+            return View();
+        }
+
+        private ActionResult Tasks(bool completed)
         {
             var employee = LoggedInUser();
             IEnumerable<Task> tasks;
@@ -31,8 +56,8 @@ namespace TaskManager20000ProPlusUltra.Controllers
             using (var context = new CompanyContext())
             {
                 tasks = from task in context.Tasks
-                    where task.EmployeeId == employee.Id
-                    select task;
+                        where task.EmployeeId == employee.Id && (completed ? task.Status == "COMPLETED" : task.Status == "OPENED")
+                        select task;
                 tasks = tasks.ToList();
             }
 
@@ -45,8 +70,9 @@ namespace TaskManager20000ProPlusUltra.Controllers
             using (var context = new CompanyContext())
             {
                 var users = from u in context.Users
-                    where u.Id == userId
-                    select u;
+                            where u.Id == userId
+                            select u;
+
                 foreach (var u in users)
                 {
                     return u;
@@ -61,8 +87,8 @@ namespace TaskManager20000ProPlusUltra.Controllers
             using (var context = new CompanyContext())
             {
                 var employees = from employee in context.Employees
-                    where employee.EmployeeId == user.Id
-                    select employee;
+                                where employee.EmployeeId == user.Id
+                                select employee;
 
                 foreach (var e in employees)
                 {
@@ -72,5 +98,5 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
             return null;
         }
-	}
+    }
 }

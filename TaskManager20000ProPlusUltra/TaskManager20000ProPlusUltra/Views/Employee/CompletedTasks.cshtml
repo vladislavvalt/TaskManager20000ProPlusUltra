@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TaskManager20000ProPlusUltra.TaskManagerDatabase.Task>
+
+@{
+    ViewBag.Title = "CompletedTasks";
+}
+
+<h2>Completed Tasks</h2>
+
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Deadline</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

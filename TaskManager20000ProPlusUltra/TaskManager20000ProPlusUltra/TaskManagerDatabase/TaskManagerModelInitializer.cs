@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using TaskManager20000ProPlusUltra.Models;
-
-using Microsoft.AspNet.Identity;
 
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
-    public class TaskManagerModelInitializer:DropCreateDatabaseAlways<CompanyContext>//DropCreateDatabaseIfModelChanges<CompanyContext>
+    public class TaskManagerModelInitializer : DropCreateDatabaseAlways<CompanyContext>//DropCreateDatabaseIfModelChanges<CompanyContext>
     {
 
         public static UserManager<ApplicationUser> UserManager { get; private set; }
@@ -22,14 +18,13 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 
         public static UserStore<ApplicationUser> Store = null;
 
-
         public static List<Employee> employees = null;
 
         public static List<Task> tasks = null;
 
         protected override void Seed(CompanyContext context)
         {
- 	        base.Seed(context);
+            base.Seed(context);
             Store = new UserStore<ApplicationUser>(context);
             UserManager = new UserManager<ApplicationUser>(Store);
             String newPassword = "test@123";
@@ -44,7 +39,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             GetManagers().ForEach(c => context.Managers.Add(c));
             GetTeams().ForEach(c => context.Teams.Add(c));
             GetTasks().ForEach(c => context.Tasks.Add(c));
-            GetProjects().ForEach(c => context.Projects.Add(c));          
+            GetProjects().ForEach(c => context.Projects.Add(c));
         }
 
 
@@ -133,7 +128,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                     }
                 }
             };
-            
+
             return clients;
         }
 
@@ -210,7 +205,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                 }
             };
             return projects;
-        }       
+        }
 
     }
 }

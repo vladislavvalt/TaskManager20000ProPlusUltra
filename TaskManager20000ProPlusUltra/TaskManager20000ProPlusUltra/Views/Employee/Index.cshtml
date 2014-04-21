@@ -4,14 +4,10 @@
     ViewBag.Title = "Employee";
 }
 
-<h2>Employee </h2>
+<h2>Employee</h2>
 
-<h3>Greetings @ViewBag.User.FirstName @ViewBag.User.LastName</h3>
+<h3>Greetings @ViewBag.User.FirstName @ViewBag.User.LastName!!!</h3>
+<h4>Interesting fact about you: @ViewBag.User.Description</h4>
 
-<a href="/Employee/Tasks">Current tasks</a>
-<a href="/Employee/Tasks">Completed tasks</a>
-@*TODO*@
-
-<h1>TODO see some personal info</h1>
-<h1>TODO see the list of Current/Completed tasks maybe sorted by deadline</h1>
-<h1>TODO current task should have complete task button</h1>
+<h3><a href="/Employee/CurrentTasks">Current tasks</a></h3>
+<h3><a href="/Employee/CompletedTasks">Completed tasks</a></h3>
