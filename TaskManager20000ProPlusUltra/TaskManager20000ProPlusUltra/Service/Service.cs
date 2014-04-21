@@ -48,7 +48,12 @@ namespace TaskManager20000ProPlusUltra.Service
             }
         }
 
-        public virtual TEntity GetByID(object id)
+        public virtual TEntity GetByID(String id)
+        {
+            return dbSet.Find(id);
+        }
+
+        public virtual TEntity GetByID(int id)
         {
             return dbSet.Find(id);
         }
