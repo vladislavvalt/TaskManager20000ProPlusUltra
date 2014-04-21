@@ -57,6 +57,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
             {
                 tasks = from task in context.Tasks
                         where task.EmployeeId == employee.Id && (completed ? task.Status == "COMPLETED" : task.Status == "OPENED")
+                        orderby task.Deadline
                         select task;
                 tasks = tasks.ToList();
             }

@@ -207,7 +207,6 @@
     <Compile Include="TaskManagerDatabase\CompanyContext.cs" />
     <Compile Include="TaskManagerDatabase\Employee.cs" />
     <Compile Include="TaskManagerDatabase\Manager.cs" />
-    <Compile Include="TaskManagerDatabase\Program.cs" />
     <Compile Include="TaskManagerDatabase\Project.cs" />
     <Compile Include="TaskManagerDatabase\Task.cs" />
     <Compile Include="TaskManagerDatabase\TaskManagerModelInitializer.cs" />
