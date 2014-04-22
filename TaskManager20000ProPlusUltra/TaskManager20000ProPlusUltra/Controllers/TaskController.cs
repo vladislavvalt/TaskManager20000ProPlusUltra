@@ -38,8 +38,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Task/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task)
@@ -70,8 +68,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Task/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TaskId,Name,Description,Deadline,StartDate,EndDate,EmployeeId")] Task task)

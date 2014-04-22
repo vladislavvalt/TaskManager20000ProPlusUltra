@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using TaskManager20000ProPlusUltra.Domain;
 using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
 namespace TaskManager20000ProPlusUltra.Service
@@ -12,14 +10,19 @@ namespace TaskManager20000ProPlusUltra.Service
         public Service<Employee> employee;
         public Service<Project> project;
         public Service<Team> team;
-        public ManagerService(CompanyContext context) : base(context) { }
+
+        public ManagerService(CompanyContext context)
+            : base(context)
+        {
+        }
+
         public void CreateProject(Project proj, String managerId)
         {
             proj.ManagerId = managerId;
             project.Insert(proj);
             //Manager m = GetByID(managerId);
-           // m.Projects.Add(proj);
-           // Update(m);
+            // m.Projects.Add(proj);
+            // Update(m);
         }
 
         public void CreateTeam(List<Employee> employees, String managerId, List<Project> projects = null)
@@ -31,7 +34,7 @@ namespace TaskManager20000ProPlusUltra.Service
                 Employees = employees,
                 Projects = projects
             };
-           
+
             team.Insert(t);
         }
 
@@ -51,8 +54,8 @@ namespace TaskManager20000ProPlusUltra.Service
         {
             List<Project> listToReturn = new List<Project>();
             var queryCompletedProjects = from proj in project.Get()
-                                         where proj.ManagerId == managerId && proj.EndDate < DateTime.Now 
-                           select proj;
+                                         where proj.ManagerId == managerId && proj.EndDate < DateTime.Now
+                                         select proj;
             foreach (Project p in queryCompletedProjects)
             {
                 listToReturn.Add(p);
@@ -70,7 +73,7 @@ namespace TaskManager20000ProPlusUltra.Service
             {
                 listToReturn.Add(p);
             }
-            return listToReturn;  
+            return listToReturn;
         }
 
         public List<Project> GetAllProjects(String managerId)
@@ -83,12 +86,12 @@ namespace TaskManager20000ProPlusUltra.Service
             {
                 listToReturn.Add(p);
             }
-            return listToReturn;    
+            return listToReturn;
         }
 
         public List<Task> GetCProjectTasks(String projectId)
         {
-            return project.GetByID(projectId).Tasks; 
+            return project.GetByID(projectId).Tasks;
         }
 
         public List<Task> GetCProjectsTasks(List<Project> projects)

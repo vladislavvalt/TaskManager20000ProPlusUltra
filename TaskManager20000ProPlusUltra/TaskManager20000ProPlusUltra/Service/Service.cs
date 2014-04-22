@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
 namespace TaskManager20000ProPlusUltra.Service
@@ -83,6 +81,7 @@ namespace TaskManager20000ProPlusUltra.Service
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
         }
+
         public virtual void Save()
         {
             context.SaveChanges();

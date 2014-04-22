@@ -18,7 +18,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "We encourage you to contact our technical support operator if you have any question and bushkova.nastya@gmail.com if you feel lonely.";
+            ViewBag.Message = "We encourage you to contact our technical support operator if you have any questions or email bushkova.nastya@gmail.com if you feel lonely.";
 
             return View();
         }

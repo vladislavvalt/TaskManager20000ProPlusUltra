@@ -3,14 +3,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using TaskManager20000ProPlusUltra.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
 {
@@ -101,7 +95,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
                         PhoneNumber = "+380631234567",
                         Email = "goca@taskturbo.com",
                         EmailConfirmed = true,
-                        Description = "smart client"   
+                        Description = "smart client"
                     }
                 },
                 new Employee{
@@ -124,7 +118,7 @@ namespace TaskManager20000ProPlusUltra.TaskManagerDatabase
             var fullEmployeeList = new List<Employee>();
             employees.ForEach(e => fullEmployeeList.Add(e));
             anotherEmployees.ForEach(e => fullEmployeeList.Add(e));
-            
+
             return fullEmployeeList.ToList();
         }
 

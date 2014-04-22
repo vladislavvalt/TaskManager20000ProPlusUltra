@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Linq;
-using System.Linq.Expressions;
-using TaskManager20000ProPlusUltra.TaskManagerDatabase;
-
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-using TaskManager20000ProPlusUltra.Models;
-
-using TaskManager20000ProPlusUltra.Service;
-using System.Net;
 using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using TaskManager20000ProPlusUltra.Service;
+using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
 namespace TaskManager20000ProPlusUltra.Controllers
 {
@@ -22,7 +13,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
     //[Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
-
         private CompanyContext context = new CompanyContext();
         private UserService UserService;
 
@@ -37,7 +27,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
         {
             UserService us = new UserService(context);
 
-            // it's hardcoded for the first time
+            // For the first run
             string id = "2";
             var mq = from m in this.context.Managers where (m.ManagerId == id) select m;
             Manager manager = mq.First();
@@ -92,13 +82,12 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
         //
         // GET: /Manager/ProjectTasks
-        public ActionResult ProjectTasks([Bind(Include="projectId")] string projectId)
+        public ActionResult ProjectTasks([Bind(Include = "projectId")] string projectId)
         {
             var project = context.Projects.Find(projectId);
             ViewBag.ProjectId = projectId;
             return View(project.Tasks);
         }
-
 
         // GET: /Task/Create
         public ActionResult CreateTask([Bind(Include = "projectId")] string projectId)
@@ -118,12 +107,10 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Task/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateTask([Bind(Include = "TaskId,Name,Description,Status,Deadline,StartDate,EndDate,EmployeeId")] Task task,
-            [Bind(Include="projectId")] string projectId)
+            [Bind(Include = "projectId")] string projectId)
         {
             if (ModelState.IsValid)
             {
@@ -135,7 +122,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
             return View(task);
         }
-
 
         //
         // GET: /Manager/Teams
@@ -151,7 +137,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
             return View(tq.ToList());
         }
 
-
         // create team
         // GET: /Manager/CreateTeam
         public ActionResult CreateTeam()
@@ -161,9 +146,8 @@ namespace TaskManager20000ProPlusUltra.Controllers
             var managers = (from m in context.Managers select m).ToList();
             managers.ForEach(m => m.User = UserService.FindUserById(m.ManagerId));
 
-            managers.ForEach(m => items.Add(new SelectListItem{Text = m.User.FirstName + " " + m.User.LastName, Value = m.ManagerId}));
+            managers.ForEach(m => items.Add(new SelectListItem { Text = m.User.FirstName + " " + m.User.LastName, Value = m.ManagerId }));
             items.First().Selected = true;
-
 
             var employee = (from e in context.Employees select e).ToList();
             employee.ForEach(e => e.User = UserService.FindUserById(e.EmployeeId));
@@ -177,8 +161,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Task/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateTeam([Bind(Include = "TeamId,ManagerId")] Team team, [Bind(Include = "employeeIdList")] List<string> employeeIdList)
@@ -194,7 +176,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
             return View(team);
         }
-
 
         // delete team
 
@@ -228,15 +209,13 @@ namespace TaskManager20000ProPlusUltra.Controllers
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction("Teams");
-            } 
-            
+            }
         }
 
         // delete team
-
 
         //
         // GET: /Manager/CreateProject
@@ -252,7 +231,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
             ViewBag.ClientId = items;
 
-
             items = new List<SelectListItem>();
 
             var managers = (from m in context.Managers select m).ToList();
@@ -263,12 +241,11 @@ namespace TaskManager20000ProPlusUltra.Controllers
 
             ViewBag.ManagerId = items;
 
-
             items = new List<SelectListItem>();
 
             var teams = (from m in context.Teams select m).ToList();
 
-            teams.ForEach(m => items.Add(new SelectListItem { Text = m.TeamId , Value = m.TeamId }));
+            teams.ForEach(m => items.Add(new SelectListItem { Text = m.TeamId, Value = m.TeamId }));
             items.First().Selected = true;
 
             ViewBag.TeamId = items;
@@ -290,10 +267,9 @@ namespace TaskManager20000ProPlusUltra.Controllers
             return View(project);
         }
 
-
         public ActionResult CloseProject([Bind(Include = "projectId")]string projectId)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var project = context.Projects.Find(projectId);
                 project.Status = "RESOLVED";
@@ -317,6 +293,5 @@ namespace TaskManager20000ProPlusUltra.Controllers
             }
             return RedirectToAction("ProjectTasks?projectId=" + projectId);
         }
-
-	}
+    }
 }

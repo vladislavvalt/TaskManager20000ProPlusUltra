@@ -2,9 +2,8 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using TaskManager20000ProPlusUltra.TaskManagerDatabase;
-
 using TaskManager20000ProPlusUltra.Service;
+using TaskManager20000ProPlusUltra.TaskManagerDatabase;
 
 namespace TaskManager20000ProPlusUltra.Controllers
 {
@@ -12,7 +11,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
     {
         private CompanyContext db = new CompanyContext();
         private UserService UserService;
-
 
         public TeamController()
         {
@@ -33,7 +31,7 @@ namespace TaskManager20000ProPlusUltra.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Team team = db.Teams.Find(id);
-            
+
             if (team == null)
             {
                 return HttpNotFound();
@@ -50,8 +48,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Team/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TeamId,ManagerId")] Team team)
@@ -82,8 +78,6 @@ namespace TaskManager20000ProPlusUltra.Controllers
         }
 
         // POST: /Team/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TeamId,ManagerId")] Team team)

@@ -203,14 +203,14 @@
     <Compile Include="Service\TeamService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="TaskManagerDatabase\Client.cs" />
-    <Compile Include="TaskManagerDatabase\CompanyContext.cs" />
-    <Compile Include="TaskManagerDatabase\Employee.cs" />
-    <Compile Include="TaskManagerDatabase\Manager.cs" />
-    <Compile Include="TaskManagerDatabase\Project.cs" />
-    <Compile Include="TaskManagerDatabase\Task.cs" />
-    <Compile Include="TaskManagerDatabase\TaskManagerModelInitializer.cs" />
-    <Compile Include="TaskManagerDatabase\Team.cs" />
+    <Compile Include="Models\Entities\Client.cs" />
+    <Compile Include="Models\Entities\CompanyContext.cs" />
+    <Compile Include="Models\Entities\Employee.cs" />
+    <Compile Include="Models\Entities\Manager.cs" />
+    <Compile Include="Models\Entities\Project.cs" />
+    <Compile Include="Models\Entities\Task.cs" />
+    <Compile Include="App_Start\TaskManagerModelInitializer.cs" />
+    <Compile Include="Models\Entities\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-TaskManager20000ProPlusUltra-20140406125050.mdf" />
